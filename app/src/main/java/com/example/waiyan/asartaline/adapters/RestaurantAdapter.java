@@ -7,15 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.waiyan.asartaline.R;
+import com.example.waiyan.asartaline.data.vos.GetWarDeeVO;
 import com.example.waiyan.asartaline.delegates.RestaurantDelegate;
 import com.example.waiyan.asartaline.viewholders.BaseRestaurantViewHolder;
 import com.example.waiyan.asartaline.viewholders.RecycItemViewHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RestaurantAdapter extends RecyclerView.Adapter<BaseRestaurantViewHolder> {
 
     private RestaurantDelegate mrestaurantDelegate;
+    private List<GetWarDeeVO> mGetWarDeeList;
+
     public RestaurantAdapter(RestaurantDelegate restaurantDelegate) {
         mrestaurantDelegate=restaurantDelegate;
+        mGetWarDeeList=new ArrayList<>();
     }
 
     @NonNull
@@ -27,11 +34,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<BaseRestaurantViewHo
 
     @Override
     public void onBindViewHolder(@NonNull BaseRestaurantViewHolder holder, int position) {
-
+        holder.bindData(mGetWarDeeList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 3;//There is a error...
+        return mGetWarDeeList.size();
+    }
+
+    public void setNewWarDeeList(List<GetWarDeeVO> getWarDeeList) {
+        mGetWarDeeList=getWarDeeList;
+        notifyDataSetChanged();
     }
 }

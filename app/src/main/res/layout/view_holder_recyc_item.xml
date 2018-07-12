@@ -17,16 +17,16 @@
                 android:id="@+id/rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/normal_padding">
+                android:paddingRight="@dimen/normal_padding">
 
                 <ImageView
                     android:id="@+id/iv_recyc_item"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_height="120dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/restaurant" />
 
-                <TextView
+                <org.mmtextview.components.MMTextView
                     android:id="@+id/tv_recycy_item_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_big" />
 
-                <TextView
+                <org.mmtextview.components.MMTextView
                     android:id="@+id/tv_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

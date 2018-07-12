@@ -19,7 +19,8 @@
                 android:layout_below="@+id/iv_cover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
+                <org.mmtextview.components.MMTextView
+                    android:id="@+id/tv_detail_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -28,7 +29,8 @@
                     android:textSize="20sp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginStart="6dp"/>
-                <TextView
+                <org.mmtextview.components.MMTextView
+                    android:id="@+id/tv_cost"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -40,7 +42,7 @@
                     android:textColor="@android:color/white"
                     android:background="@drawable/rating_bg" />
             </LinearLayout>
-            <TextView
+            <org.mmtextview.components.MMTextView
                 android:id="@+id/tv_description"
                 android:layout_below="@+id/ll_detail"
                 android:layout_width="wrap_content"

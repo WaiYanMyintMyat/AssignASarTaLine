@@ -3,16 +3,21 @@ package com.example.waiyan.asartaline.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.waiyan.asartaline.R;
+import com.example.waiyan.asartaline.data.vos.GetWarDeeVO;
 import com.example.waiyan.asartaline.delegates.RestaurantDelegate;
 import com.example.waiyan.asartaline.viewholders.BaseRestaurantViewHolder;
 import com.example.waiyan.asartaline.viewholders.CategoryViewHolder;
 import com.example.waiyan.asartaline.viewholders.RecycItemViewHolder;
 import com.example.waiyan.asartaline.viewholders.RecycListViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<BaseRestaurantViewHolder> {
 
@@ -20,9 +25,12 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<BaseRestaurantView
     private static final int VT_RECYCITEM = 2000;
 
     private RestaurantDelegate mrestaurantDelegate;
+    private List<GetWarDeeVO> mGetWarDeeList;
+    private RecycListViewHolder recycListViewHolder;
 
     public MainRecyclerAdapter(RestaurantDelegate restaurantDelegate) {
         mrestaurantDelegate=restaurantDelegate;
+        mGetWarDeeList=new ArrayList<>();
     }
 
     @NonNull
@@ -34,7 +42,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<BaseRestaurantView
             return new CategoryViewHolder(view);
         }else{
             View view=layoutInflater.inflate(R.layout.view_holder_recyclist,parent,false);
-            return new RecycListViewHolder(view,mrestaurantDelegate);
+            recycListViewHolder=new RecycListViewHolder(view,mrestaurantDelegate);
+            return recycListViewHolder;
         }
     }
 
@@ -55,5 +64,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<BaseRestaurantView
         }else{
             return VT_RECYCITEM;
         }
+    }
+
+    public void setNewWarDeeList(List<GetWarDeeVO> getWarDeeList){
+        mGetWarDeeList=getWarDeeList;
+        recycListViewHolder.setNewWarDeeList(mGetWarDeeList);
+        //notifyDataSetChanged();
     }
 }

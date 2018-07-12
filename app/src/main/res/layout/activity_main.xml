@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -91,29 +93,49 @@
                 android:id="@+id/et_search_restaurant"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:hint="Search Restaurant"
-                android:padding="@dimen/normal_padding"
-                android:layout_toRightOf="@+id/iv_location"
                 android:layout_alignBottom="@+id/iv_location"
-                android:background="@android:color/transparent"/>
+                android:layout_toRightOf="@+id/iv_location"
+                android:background="@android:color/transparent"
+                android:hint="Search Restaurant"
+                android:padding="@dimen/normal_padding" />
 
             <ImageView
                 android:id="@+id/iv_search"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toRightOf="@+id/et_search_restaurant"
-                android:src="@drawable/ic_search_white_24dp"
                 android:layout_alignBottom="@+id/iv_location"
                 android:layout_alignTop="@+id/iv_location"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@+id/et_search_restaurant"
+                android:src="@drawable/ic_search_white_24dp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_main"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginTop="@dimen/large_margin"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/large_margin" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/vp_empty"
+            layout="@layout/view_pod_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
